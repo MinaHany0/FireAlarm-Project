@@ -1,0 +1,10 @@
+note that you cannot do 100 KHZ 25% duty cycle because the ISR will have two if conditions
+:
+the full cycle is 1 /100 khz is 10 micro sec
+		one to set ctc to catch on 2.5 micro sec (with its suitable number and prescaler)
+and
+		one to set ctc to catch on 7.5 micro sec
+
+the problem is when it gets inside the isr and sets the ctc to catch at 2.5 ,
+the Timer0 register counts to more than 2.5 second before it gets out of the ISR
+so it can never be achieved
